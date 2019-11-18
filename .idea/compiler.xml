@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="classLoader" />
+        <module name="add" />
+        <module name="operationapi" />
+        <module name="mul" />
+        <module name="div" />
+        <module name="userInterface" />
+        <module name="userInterfaceapi" />
+        <module name="ear" />
+        <module name="subtraction" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Add" target="1.5" />
+      <module name="Div" target="1.5" />
+      <module name="Mul" target="1.5" />
+      <module name="Operationapi" target="1.5" />
+      <module name="UserInterfaceapi" target="1.5" />
+      <module name="validator" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+# Project exclude paths
+/add/target/
+/classLoader/target/
+/div/target/
+/ear/target/
+/mul/target/
+/operation-api/target/
+/subtraction/target/
+/userInterface/target/
+/userInterface-api/target/
