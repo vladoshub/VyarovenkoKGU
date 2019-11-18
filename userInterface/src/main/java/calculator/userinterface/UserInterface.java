@@ -90,7 +90,7 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
                 System.out.println(k+" - "+op.getNameOp());
             }
             int type = Integer.parseInt(scanner.nextLine());
-            if (type>0&&type<5){
+            if (type>0&&type<=operations.size()){
                 ParseAndCalc(operations.get(type-1));
             }
             else {
