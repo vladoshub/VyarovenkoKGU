@@ -7,7 +7,7 @@ public class Main {
         if(!userInterface.getOperations().isEmpty())
         userInterface.ShowOps();
         else {
-            System.out.println("ops is empty");
+            System.out.println("jar not found or jar not include implemet class");
         }
     }
 

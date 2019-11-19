@@ -5,15 +5,19 @@ package calculator.userinterface;
         ADD("add.Add"),
         MUL("mul.Mul"),
         DIV("div.Div"),
-        SUBTRACTION("subtraction.Subtraction");
+        SUBTRACTION("subtraction.Subtraction"),
+        OperADD("Operation ADD"),
+        OperMUL("Operation MUL"),
+        OperDIV("Operation DIV"),
+        OperSUBTRACTION("Operation SUBTRACTION");
 
-        private String path;
+        private String operation;
 
-        ClassPathList(String path) {
-            this.path = path;
+        ClassPathList(String operation) {
+            this.operation = operation;
         }
 
-        public String path() {
-            return path;
+        public String operation() {
+            return operation;
         }
     }

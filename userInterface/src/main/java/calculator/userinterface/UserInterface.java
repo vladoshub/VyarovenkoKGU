@@ -58,8 +58,7 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
     }
 
     public boolean ValidDivOp(double a,double b){
-        if (b == 0) return false;
-        return true;
+        return (b == 0);
     }
 
     public void ParseAndCalc(Operations op) {
@@ -68,15 +67,19 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
             double a = Double.parseDouble(scanner.nextLine());
             System.out.println("input second operand");
             double b = Double.parseDouble(scanner.nextLine());
-            if(ValidDivOp(a,b))
-            Out(op.Calculate(a,b));
-            else
-            {
-                System.out.println("Reinput");
-                ParseAndCalc(op);
+            if(op.getNameOp().equals(ClassPathList.OperSUBTRACTION.operation())) {
+                if (ValidDivOp(a, b))
+                    Out(op.Calculate(a, b));
+                else
+                {
+                    System.out.println("division by zero error");
+                    ShowOps();
+                }
             }
+            Out(op.Calculate(a, b));
         } catch (Exception e) {
             System.out.println("Error input,reinput pls");
+            ParseAndCalc(op);
         }
     }
 
@@ -84,7 +87,7 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
     public void ShowOps() {
         try {
             int k=0;
-            System.out.println("press number to");
+            System.out.println("press number to:");
             for(Operations op:operations) {
                 k++;
                 System.out.println(k+" - "+op.getNameOp());
