@@ -2,19 +2,16 @@ package calculator.userinterface;
 
 
 import calculator.api.Operations;
+import calculator.classloader.ClassFinder;
 import calculator.classloader.ExtensionLoader;
 
-import java.io.Console;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 public class UserInterface implements calculator.userinterfaceapi.UserInterface {
 
+    private String path;
     private List<Operations> operations =  new ArrayList<Operations>();
     private Scanner scanner = new Scanner(System.in);
 
@@ -22,34 +19,20 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
         return operations;
     }
 
+   public UserInterface(String path){
+        this.path=path;
+   }
+
     public void Out(double out) {
         System.out.println("result: "+out);
     }
 
     public void InitJar() {
-        List<String> classNames = new ArrayList<String>();
-        try{
-            File dir = new File("C:/jar/"); //path указывает на директорию
-            File[] arrFiles = dir.listFiles();
-            for (File f:arrFiles) {
-                ZipInputStream zip = new ZipInputStream(new FileInputStream(f));
-                for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
-                    if (!entry.isDirectory() && entry.getName().endsWith(".class")) {
-                        // This ZipEntry represents a class. Now, what class does it represent?
-                        String className = entry.getName().replace('/', '.'); // including ".class"
-                        classNames.add(className.substring(0, className.length() - ".class".length()));
-                    }
-                }
-            }
-        }
-        catch (Exception e){
-
-        }
-
-            ExtensionLoader<Operations> loader = new ExtensionLoader<Operations>();
-            for (String s : classNames){
+        ExtensionLoader<Operations> loader = new ExtensionLoader<Operations>();//загрузчик классов
+        ClassFinder classFinder = new ClassFinder(path);//ищет все классы во всех jar по пути
+            for (String clazz : classFinder.getClassNames()){
                 try {
-                    operations.add(loader.LoadClass("C:/jar/", s, Operations.class));
+                    operations.add(loader.LoadClass(path, clazz, Operations.class));//добавялем класс если он реализует Operations
                 }
                 catch (Exception e){
                     continue;
