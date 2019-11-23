@@ -50,9 +50,9 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
             double a = Double.parseDouble(scanner.nextLine());
             System.out.println("input second operand");
             double b = Double.parseDouble(scanner.nextLine());
-            if(op.getNameOp().equals(ClassPathList.OperSUBTRACTION.operation())) {
-                if (ValidDivOp(a, b))
-                    Out(op.Calculate(a, b));
+            if(op.getNameOp().equals(ClassPathList.OperDIV.operation())) {
+                if (!ValidDivOp(a, b)) {
+                }
                 else
                 {
                     System.out.println("division by zero error");
