@@ -6,17 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="userInterfaceapi" />
         <module name="operation-api" />
         <module name="classLoader" />
         <module name="Pow2" />
         <module name="add" />
+        <module name="ear" />
         <module name="operationapi" />
         <module name="mul" />
         <module name="div" />
         <module name="subtraction" />
+        <module name="userInterfaceapi" />
         <module name="userInterface-api" />
-        <module name="ear" />
         <module name="userInterface" />
       </profile>
     </annotationProcessing>
