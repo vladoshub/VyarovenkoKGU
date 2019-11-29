@@ -13,6 +13,7 @@
         <module name="mul" />
         <module name="operation-api" />
         <module name="operationapi" />
+        <module name="Pow2" />
         <module name="subtraction" />
         <module name="userInterface" />
         <module name="userInterface-api" />

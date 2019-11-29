@@ -15,6 +15,11 @@
     <dependencies>
         <dependency>
             <groupId>Calculator-KGU</groupId>
+            <artifactId>Pow2</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>Calculator-KGU</groupId>
             <artifactId>add</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

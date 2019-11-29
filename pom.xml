@@ -18,6 +18,7 @@
         <module>userInterface-api</module>
         <module>classLoader</module>
         <module>ear</module>
+        <module>Pow2</module>
     </modules>
 
     <properties>

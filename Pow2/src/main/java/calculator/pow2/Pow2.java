@@ -1,22 +1,22 @@
-package calculator.subtraction;
+package calculator.pow2;
 
 import calculator.api.Operations;
 
-public class Subtraction implements Operations {
+public class Pow2 implements Operations {
+
     public double Calculate(double... a) {
-        return a[0]-a[1];
+        return Math.pow(a[0],2);
     }
 
     @Override
     public int getArgCount() {
-        return 2;
+        return 1;
     }
 
     @Override
     public String getNameArg(int i) throws Exception{
         switch (i){
             case 0:return "1операнд";
-            case 1:return "2операнд";
             default:throw new Exception("1");
 
         }
@@ -24,7 +24,7 @@ public class Subtraction implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation SUBTRACTION";
+        return "Operation Pow";
     }
 
 }

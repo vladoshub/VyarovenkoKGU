@@ -2,10 +2,6 @@ package calculator.userinterface;
 
     public enum ClassPathList
     {
-        ADD("add.Add"),
-        MUL("mul.Mul"),
-        DIV("div.Div"),
-        SUBTRACTION("subtraction.Subtraction"),
         OperADD("Operation ADD"),
         OperMUL("Operation MUL"),
         OperDIV("Operation DIV"),

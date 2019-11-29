@@ -46,23 +46,31 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
 
     public void ParseAndCalc(Operations op) {
         try {
+            System.out.println("input to view operands");
+            int ops = Integer.parseInt(scanner.nextLine());
+            System.out.println(op.getNameArg(ops));
             System.out.println("input first operand");
             double a = Double.parseDouble(scanner.nextLine());
-            System.out.println("input second operand");
-            double b = Double.parseDouble(scanner.nextLine());
-            if(op.getNameOp().equals(ClassPathList.OperDIV.operation())) {
-                if (!ValidDivOp(a, b)) {
-                }
-                else
-                {
-                    System.out.println("division by zero error");
-                    ShowOps();
-                }
+            if (op.getArgCount()>1) {
+                System.out.println("input second operand");
+                double b = Double.parseDouble(scanner.nextLine());
+                Out(op.Calculate(a, b));
             }
-            Out(op.Calculate(a, b));
+            else
+                Out(op.Calculate(a));
         } catch (Exception e) {
-            System.out.println("Error input,reinput pls");
-            ParseAndCalc(op);
+            if (e.getMessage().equals("0")) {
+                System.out.println("division error");
+                ParseAndCalc(op);
+            }
+            else if(e.getMessage().equals("1")){
+                System.out.println("not found this oper");
+                ParseAndCalc(op);
+            }
+            else {
+                System.out.println("Error input,reinput pls");
+                ParseAndCalc(op);
+            }
         }
     }
 
