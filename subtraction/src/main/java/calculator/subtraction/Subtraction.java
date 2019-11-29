@@ -24,7 +24,7 @@ public class Subtraction implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation SUBTRACTION";
+        return "-";
     }
 
 }

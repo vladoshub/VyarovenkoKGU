@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="add" />
-        <module name="classLoader" />
-        <module name="div" />
-        <module name="ear" />
-        <module name="mul" />
-        <module name="operation-api" />
-        <module name="operationapi" />
-        <module name="Pow2" />
-        <module name="subtraction" />
-        <module name="userInterface" />
-        <module name="userInterface-api" />
         <module name="userInterfaceapi" />
+        <module name="operation-api" />
+        <module name="classLoader" />
+        <module name="Pow2" />
+        <module name="add" />
+        <module name="operationapi" />
+        <module name="mul" />
+        <module name="div" />
+        <module name="subtraction" />
+        <module name="userInterface-api" />
+        <module name="ear" />
+        <module name="userInterface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

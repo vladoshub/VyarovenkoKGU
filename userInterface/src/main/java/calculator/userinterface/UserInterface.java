@@ -23,16 +23,16 @@ public class UserInterface implements calculator.userinterfaceapi.UserInterface 
         this.path=path;
    }
 
-    public void Out(double out) {
-        System.out.println("result: "+out);
+    public String Out(double out) {
+        return out+"";
     }
 
     public void InitJar() {
         ExtensionLoader<Operations> loader = new ExtensionLoader<Operations>();//загрузчик классов
-        ClassFinder classFinder = new ClassFinder(path);//ищет все классы во всех jar по пути
+        ClassFinder classFinder = new ClassFinder(path);//ищет все классы во всех jar по пути path
             for (String clazz : classFinder.getClassNames()){
                 try {
-                    operations.add(loader.LoadClass(path, clazz, Operations.class));//добавялем класс если он реализует Operations
+                    operations.add(loader.LoadClass(path, clazz, Operations.class));//добавялем класс если он реализует Operations в list
                 }
                 catch (Exception e){
                     continue;

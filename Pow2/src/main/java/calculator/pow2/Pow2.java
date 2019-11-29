@@ -24,7 +24,7 @@ public class Pow2 implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation Pow";
+        return "POW2";
     }
 
 }

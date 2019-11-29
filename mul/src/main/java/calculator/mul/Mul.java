@@ -24,6 +24,6 @@ public class Mul implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation MUL";
+        return "*";
     }
 }

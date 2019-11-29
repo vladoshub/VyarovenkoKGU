@@ -27,7 +27,7 @@ public class Add implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation ADD";
+        return "+";
     }
 
 }

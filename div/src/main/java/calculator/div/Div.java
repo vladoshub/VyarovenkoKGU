@@ -29,6 +29,6 @@ public class Div implements Operations {
     }
 
     public String getNameOp() {
-        return "Operation DIV";
+        return "/";
     }
 }
