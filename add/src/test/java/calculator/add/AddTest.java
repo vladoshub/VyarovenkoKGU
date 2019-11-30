@@ -23,10 +23,7 @@ public class AddTest {
         double b5 = oper.Calculate(100, -5);
         Assert.assertEquals(-95,(float)b5,0.001);
     }
-    @org.junit.Test
-    public void getNameArg() {
 
-    }
 
 
 }

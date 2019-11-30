@@ -20,7 +20,4 @@ public class Pow2Test {
         Assert.assertEquals(0.0625,(float)a3,0.001);
     }
 
-    @org.junit.Test
-    public void getNameArg() {
-    }
 }
