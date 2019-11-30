@@ -12,12 +12,10 @@ import java.awt.event.MouseEvent;
 
 public class JPanelApp extends JPanel {
 
-    JTextField txt1 = null;
     double res = 0;
-    double flag=1;
     double save=0;
-    String op = "";
     Operations operations;
+    Operations preOperations;
 
     public JPanelApp()
     {
@@ -40,6 +38,7 @@ public class JPanelApp extends JPanel {
             // Specifies the position of the element
             final TextField txt1 = new TextField();
             txt1.setBounds(10, 10, 235, 25);
+            txt1.setEditable(false);
 
             JButton b0 = new JButton("0");
             b0.setBounds(10, 270, 75, 50);
@@ -102,6 +101,11 @@ public class JPanelApp extends JPanel {
             Font fontPoint = new Font("serif", Font.BOLD, 22);
             point.setFont(fontPoint);
 
+            JButton clear = new JButton("C");
+            clear.setBounds(85, 350, 75, 50);
+            Font clearFont = new Font("serif", Font.BOLD, 22);
+            clear.setFont(clearFont);
+
             add(txt1);
             add(b0);
             add(b1);
@@ -117,6 +121,7 @@ public class JPanelApp extends JPanel {
             add(point);
             add(list);
             add(point);
+            add(clear);
 
             list.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
@@ -125,14 +130,18 @@ public class JPanelApp extends JPanel {
                         int index = theList.locationToIndex(e.getPoint());
                         if (index >= 0) {
                             Object o = theList.getModel().getElementAt(index);
+                            if(userInterface.getOperations().get(index).getNameOp().equals("-")&&operations!=null)
+                                preOperations=operations;
                             operations = userInterface.getOperations().get(index);
                             if (operations.getArgCount() == 2) {
                                 if (res == 0) {
                                     if(!txt1.getText().equals(""))
                                         save=Double.valueOf(txt1.getText());
                                     if (operations.getNameOp().equals("-")) {
-                                        flag = flag * -1;
-                                        txt1.setText("");
+                                        txt1.setText("-");
+                                        if(preOperations!=null)
+                                        operations=preOperations;
+                                        preOperations=null;
                                     } else {
                                         txt1.setText("");
                                     }
@@ -140,16 +149,17 @@ public class JPanelApp extends JPanel {
                                     try {
                                         if (save == 0) {
                                             res=Double.valueOf(txt1.getText());
-                                            save = res * flag;
-                                            flag = 1;
+                                            save = res;
+
                                             res=0;
                                             txt1.setText("");
                                         } else {
-                                            save = operations.Calculate(save, res * flag);
-                                            flag = 1;
+                                            save = operations.Calculate(save, res );
+
                                             res = 0;
                                             txt1.setText(userInterface.Out(save));
                                             save=0;
+                                            preOperations=null;
                                         }
                                     } catch (Exception es) {
                                     }
@@ -164,6 +174,20 @@ public class JPanelApp extends JPanel {
                             }
                         }
                     }
+
+                }
+            });
+
+
+            clear.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent arg1)
+                {
+                    txt1.setText("");
+                    operations=null;
+                    res=0;
+                    save=0;
 
                 }
             });
@@ -300,6 +324,8 @@ public class JPanelApp extends JPanel {
                             txt1.setText(Double.toString(s));
                             res = 0;
                             save = 0;
+                            preOperations=null;
+                            operations=null;
                         } catch (Exception ve) {
 
                         }

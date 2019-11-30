@@ -8,12 +8,18 @@ public class MulTest {
 
     @org.junit.Test
     public void calculate() {
-        Mul mul = new Mul();
-        double a1 = mul.Calculate(5, 5);
-        double b1 = mul.Calculate(1, 25);
-        double a2 = mul.Calculate(2, 10);
-        double b2 = mul.Calculate(4, 5);
-        Assert.assertEquals((float)a1,(float)b1,0.001);
-        Assert.assertEquals((float)a2,(float)b2,0.001);
+        Mul oper = new Mul();
+        double a = oper.Calculate(5, 5);
+        Assert.assertEquals(25,(float)a,0.001);
+        double a1 = oper.Calculate(0, 5);
+        Assert.assertEquals(0,(float)a1,0.001);
+        double a2 = oper.Calculate(0, 0);
+        Assert.assertEquals(0,(float)a2,0.001);
+        double b3 = oper.Calculate(-10, -4);
+        Assert.assertEquals(40,(float)b3,0.001);
+        double b4 = oper.Calculate(11, 5.5);
+        Assert.assertEquals(60.5,(float)b4,0.001);
+        double b5 = oper.Calculate(100, -5);
+        Assert.assertEquals(-500,(float)b5,0.001);
     }
 }

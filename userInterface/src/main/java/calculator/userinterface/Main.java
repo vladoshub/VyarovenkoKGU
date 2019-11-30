@@ -6,10 +6,11 @@ public class Main {
         UserInterface userInterface = new UserInterface("C:/jar/");
         userInterface.InitJar();
         if(!userInterface.getOperations().isEmpty())
-        userInterface.ShowOps();
+            new Frame();
         else {
             System.out.println("jar not found or jar not include implement class");
         }
     }
+
 
 }
