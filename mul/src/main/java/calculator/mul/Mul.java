@@ -3,7 +3,11 @@ package calculator.mul;
 import calculator.api.Operations;
 
 public class Mul implements Operations {
-    public double Calculate(double... a) {
+    public double Calculate(double... a) throws Exception{
+        if(a.length==0)
+            throw new Exception("0");
+        if(a.length==1)
+            throw new Exception("1");
         return a[0]*a[1];
     }
 
@@ -24,6 +28,6 @@ public class Mul implements Operations {
     }
 
     public String getNameOp() {
-        return "*";
+        return "Умножение";
     }
 }

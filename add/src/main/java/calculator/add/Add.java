@@ -1,13 +1,17 @@
 package calculator.add;
 
-import calculator.api.Operations;;
+import calculator.api.Operations;;import java.security.spec.ECField;
 
 public class Add implements Operations {
 
 
 
-    public double Calculate(double... a) {
-        return a[0]+a[1];
+    public double Calculate(double... a)throws Exception {
+        if(a.length==0)
+            throw new Exception("0");
+        if(a.length==1)
+            throw new Exception("1");
+            return a[0] + a[1];
     }
 
     @Override
@@ -27,7 +31,7 @@ public class Add implements Operations {
     }
 
     public String getNameOp() {
-        return "+";
+        return "Cложение";
     }
 
 }

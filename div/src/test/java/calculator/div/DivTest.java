@@ -28,14 +28,105 @@ public class DivTest {
         }
         catch (Exception e){
 
+
+        }
+
+    }
+
+    @org.junit.Test
+    public void calculateNaN() {
+        try {
+            Div oper = new Div();
+            Assert.assertEquals(Double.NaN, oper.Calculate(Double.NaN, Double.NaN), 0.001);
+            Assert.assertEquals(Double.NaN, oper.Calculate(Double.NaN, 45), 0.001);
+        }
+        catch (Exception e){
+
+        }
+
+    }
+
+    @org.junit.Test
+    public void calculateZero() {
+        try {
+            Div oper = new Div();
+            Assert.assertEquals(Double.NaN, oper.Calculate(Double.NaN, Double.NaN), 0.001);
+            Assert.assertEquals(Double.NaN, oper.Calculate(Double.NaN, 45), 0.001);
+        }
+        catch (Exception e){
+            String expectedMessage = "divison error";
+            Assert.assertEquals( "исключение выброшено корректно", expectedMessage, e.getMessage() );
+        }
+
+    }
+
+    @org.junit.Test
+    public void calculateManyArg() {
+        try {
+            Div oper = new Div();
+            Assert.assertEquals(1, oper.Calculate(45, 45, 56, 56), 0.001);
+        }
+        catch (Exception e){
+
+        }
+
+    }
+
+    @org.junit.Test
+    public void calculateOneArg() {
+        try {
+            Div oper = new Div();
+            oper.Calculate(456);
+        }
+        catch (Exception e){
+            String expectedMessage = "1";
+            Assert.assertEquals( "исключение выброшено корректно", expectedMessage, e.getMessage() );
+        }
+
+    }
+
+    @org.junit.Test
+    public void calculateNoneArg() {
+        try {
+            Div oper = new Div();
+            oper.Calculate();
+        } catch (Exception e) {
+            String expectedMessage = "0";
+            Assert.assertEquals("исключение выброшено корректно", expectedMessage, e.getMessage());
+        }
+    }
+
+
+    @org.junit.Test
+    public void getArgCount() {
+        Div oper = new Div();
+        Assert.assertEquals(2,oper.getArgCount());
+    }
+
+    @org.junit.Test
+    public void getNameArg() {
+        Div oper = new Div();
+        try {
+            Assert.assertEquals("делимое", oper.getNameArg(0));
+            Assert.assertEquals("делитель", oper.getNameArg(1));
+            oper.getNameArg(45);
+        }
+        catch (Exception e)
+        {
+            String expectedMessage = "1";
+            Assert.assertEquals( "Делиние", expectedMessage, e.getMessage() );
         }
 
     }
 
 
     @org.junit.Test
-    public void getNameArg() {
+    public void getNameOp() {
+        Div oper = new Div();
+        Assert.assertEquals("Делиние",oper.getNameOp());
 
     }
+
+
 
 }

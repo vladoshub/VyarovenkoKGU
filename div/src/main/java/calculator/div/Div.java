@@ -4,6 +4,10 @@ import calculator.api.Operations;
 
 public class Div implements Operations {
     public double Calculate(double... a) throws Exception{
+        if(a.length==0)
+            throw new Exception("0");
+        if(a.length==1)
+            throw new Exception("1");
         if (a[1]!=0)
         return a[0]/a[1];
         else {
@@ -29,6 +33,6 @@ public class Div implements Operations {
     }
 
     public String getNameOp() {
-        return "/";
+        return "Делиние";
     }
 }

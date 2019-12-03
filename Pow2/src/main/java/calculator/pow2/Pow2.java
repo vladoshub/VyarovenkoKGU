@@ -4,7 +4,9 @@ import calculator.api.Operations;
 
 public class Pow2 implements Operations {
 
-    public double Calculate(double... a) {
+    public double Calculate(double... a)throws Exception {
+        if(a.length==0)
+            throw new Exception("0");
         return Math.pow(a[0],2);
     }
 
@@ -24,7 +26,7 @@ public class Pow2 implements Operations {
     }
 
     public String getNameOp() {
-        return "POW2";
+        return "Возведение во 2 степень";
     }
 
 }
