@@ -9,12 +9,16 @@ import java.awt.event.*;
 
 public class JPanelApp extends JPanel {
 
+    boolean check = false;
+    boolean flag=false;
     double save = 0;
     double res1 = 0;
     double res2=0;
     int width,height;
     Operations operations;
     Operations preOperations;
+
+
 
     public JPanelApp(int width,int height)
     {
@@ -84,6 +88,11 @@ public class JPanelApp extends JPanel {
                     JComboBox theList = (JComboBox) e.getSource();
                     int index = theList.getSelectedIndex();
                     if (index >= 0) {
+                        if(operations!=userInterface.getOperations().get(index))
+                        {
+                            txt1.setText("");
+                            txt2.setText("");
+                        }
                         operations = userInterface.getOperations().get(index);
                         if (operations.getArgCount() == 2) {
                             txt1.setVisible(true);
@@ -127,25 +136,57 @@ public class JPanelApp extends JPanel {
             } );
 
 
+
+
             bRes.addActionListener(new ActionListener()
             {
                 @Override
-                public void actionPerformed(ActionEvent arg0)
-                {
+                public void actionPerformed(ActionEvent arg0) {
+
+
+                    if ((!(txt2.getText().equals("") || txt1.getText().equals("")))&&operations!=null) {
 
                         try {
-                            if(!(operations==null)) {
-                                double save = operations.Calculate(res1, res2);
+                            res1 = Double.valueOf(txt1.getText());
+                            list.updateUI();
+                            txt1.setBackground(Color.white);
+                            check=true;
+                            list.updateUI();
+                        } catch (Exception ve) {
+                            txt1.setBackground(Color.RED);
+                            check=false;
+                            list.updateUI();
+                        }
+                        try {
+                                res2 = Double.valueOf(txt2.getText());
+                                txt2.setBackground(Color.white);
+                                if(check)
+                            check=true;
+                                list.updateUI();
+
+                            }
+                        catch (Exception ve) {
+                            txt2.setBackground(Color.RED);
+                            check=false;
+                            list.updateUI();
+                        }
+
+                        try {
+                            if (operations != null&&check) {
+                                save = operations.Calculate(res1, res2);
                                 txt3.setText(Double.toString(save));
                                 txt3.setBackground(Color.white);
+                                flag=true;
                                 list.updateUI();
                             }
                         } catch (Exception ve) {
                             txt3.setText(("Ошибка!"));
                             txt3.setBackground(Color.RED);
+                            flag=false;
                             list.updateUI();
                         }
                     }
+                }
             });
 
             but1.addActionListener(new ActionListener()
@@ -153,17 +194,11 @@ public class JPanelApp extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent arg0)
                 {
-                        try {
-                            res1 =Double.valueOf(txt1.getText());
-                            txt1.setBackground(Color.white);
-                            list.updateUI();
-                        } catch (Exception ve) {
-                            txt1.setBackground(Color.RED);
-                            list.updateUI();
-                        }
-                    }
+                    if(flag)
+                    txt1.setText(Double.toString(save));
+                    list.updateUI();
 
-            });
+            }});
 
 
             but2.addActionListener(new ActionListener()
@@ -171,15 +206,9 @@ public class JPanelApp extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent arg0)
                 {
-
-                    try {
-                        res2 =Double.valueOf(txt1.getText());
-                        txt1.setBackground(Color.white);
-                        list.updateUI();
-                    } catch (Exception ve) {
-                        txt2.setBackground(Color.RED);
-                        list.updateUI();
-                    }
+                    if(flag)
+                        txt2.setText(Double.toString(save));
+                    list.updateUI();
                 }
 
             });
