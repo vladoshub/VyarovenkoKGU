@@ -78,21 +78,73 @@ public class JPanelApp extends JPanel {
             add(but1);
             add(but2);
 
-            list.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
+            txt1.addFocusListener(new FocusListener(){
 
+
+                @Override
+                public void focusGained(FocusEvent e) {
+
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    if (!txt1.getText().equals("")) {
+                        try {
+                            Double.valueOf(txt1.getText());
+                            txt1.setBackground(Color.white);
+                            check = true;
+                            list.updateUI();
+                        } catch (Exception ve) {
+                            txt1.setBackground(Color.RED);
+                            check = false;
+                            list.updateUI();
+                        }
+
+
+                    }
+                }
+
+
+            });
+
+
+            txt2.addFocusListener(new FocusListener(){
+                @Override
+                public void focusGained(FocusEvent e) {
+
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    if (!txt2.getText().equals("")) {
+                        try {
+                            Double.valueOf(txt2.getText());
+                            txt2.setBackground(Color.white);
+                            check = true;
+                            list.updateUI();
+                        } catch (Exception ve) {
+                            txt2.setBackground(Color.RED);
+                            check = false;
+                            list.updateUI();
+                        }
+
+
+                    }
+                }
+
+
+            });
+
+
+            list.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     txt1.setVisible(false);
                     txt2.setVisible(false);
 
                     JComboBox theList = (JComboBox) e.getSource();
                     int index = theList.getSelectedIndex();
                     if (index >= 0) {
-                        if(operations!=userInterface.getOperations().get(index))
-                        {
-                            txt1.setText("");
-                            txt2.setText("");
-                        }
                         operations = userInterface.getOperations().get(index);
                         if (operations.getArgCount() == 2) {
                             txt1.setVisible(true);
@@ -111,28 +163,10 @@ public class JPanelApp extends JPanel {
 
                         }
                     }
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
 
                 }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
 
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
             } );
 
 
@@ -144,46 +178,72 @@ public class JPanelApp extends JPanel {
                 public void actionPerformed(ActionEvent arg0) {
 
 
-                    if ((!(txt2.getText().equals("") || txt1.getText().equals("")))&&operations!=null) {
+                    if(operations!=null){
+                        if (operations.getArgCount()==1&&!txt1.getText().equals("")) {
 
-                        try {
-                            res1 = Double.valueOf(txt1.getText());
-                            list.updateUI();
-                            txt1.setBackground(Color.white);
-                            check=true;
-                            list.updateUI();
-                        } catch (Exception ve) {
-                            txt1.setBackground(Color.RED);
-                            check=false;
-                            list.updateUI();
+                            try {
+                                res1 = Double.valueOf(txt1.getText());
+                                txt1.setBackground(Color.white);
+                                check = true;
+                                list.updateUI();
+                            } catch (Exception ve) {
+                                txt1.setBackground(Color.RED);
+                                check = false;
+                                list.updateUI();
+                            }
+                            try {
+                                if (operations != null && check) {
+                                    save = operations.Calculate(res1);
+                                    txt3.setText(Double.toString(save));
+                                    txt3.setBackground(Color.white);
+                                    flag = true;
+                                    list.updateUI();
+                                }
+                            } catch (Exception ve) {
+                                txt3.setText(("Ошибка!"));
+                                txt3.setBackground(Color.RED);
+                                flag = false;
+                                list.updateUI();
+                            }
                         }
-                        try {
+                        else if(operations.getArgCount()==2&&!(txt1.getText().equals("")||txt2.getText().equals(""))){
+                            try {
+                                res1 = Double.valueOf(txt1.getText());
+                                txt1.setBackground(Color.white);
+                                check = true;
+                                list.updateUI();
+                            } catch (Exception ve) {
+                                txt1.setBackground(Color.RED);
+                                check = false;
+                                list.updateUI();
+                            }
+                            try {
                                 res2 = Double.valueOf(txt2.getText());
                                 txt2.setBackground(Color.white);
-                                if(check)
-                            check=true;
+                                if (check)
+                                    check = true;
                                 list.updateUI();
 
-                            }
-                        catch (Exception ve) {
-                            txt2.setBackground(Color.RED);
-                            check=false;
-                            list.updateUI();
-                        }
-
-                        try {
-                            if (operations != null&&check) {
-                                save = operations.Calculate(res1, res2);
-                                txt3.setText(Double.toString(save));
-                                txt3.setBackground(Color.white);
-                                flag=true;
+                            } catch (Exception ve) {
+                                txt2.setBackground(Color.RED);
+                                check = false;
                                 list.updateUI();
                             }
-                        } catch (Exception ve) {
-                            txt3.setText(("Ошибка!"));
-                            txt3.setBackground(Color.RED);
-                            flag=false;
-                            list.updateUI();
+
+                            try {
+                                if (operations != null && check) {
+                                    save = operations.Calculate(res1, res2);
+                                    txt3.setText(Double.toString(save));
+                                    txt3.setBackground(Color.white);
+                                    flag = true;
+                                    list.updateUI();
+                                }
+                            } catch (Exception ve) {
+                                txt3.setText(("Ошибка!"));
+                                txt3.setBackground(Color.RED);
+                                flag = false;
+                                list.updateUI();
+                            }
                         }
                     }
                 }

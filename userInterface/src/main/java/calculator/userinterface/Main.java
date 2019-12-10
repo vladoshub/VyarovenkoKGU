@@ -2,7 +2,6 @@ package calculator.userinterface;
 
 public class Main {
     public static void main(String[] args){
-        new Frame();
         UserInterface userInterface = new UserInterface("C:/jar/");
         userInterface.InitJar();
         if(!userInterface.getOperations().isEmpty())

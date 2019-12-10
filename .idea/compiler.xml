@@ -7,12 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="operation-api" />
+        <module name="mul" />
         <module name="classLoader" />
-        <module name="userInterface-api" />
         <module name="Pow2" />
         <module name="add" />
+        <module name="userInterface-api" />
         <module name="operationapi" />
-        <module name="mul" />
         <module name="div" />
         <module name="subtraction" />
         <module name="userInterfaceapi" />
