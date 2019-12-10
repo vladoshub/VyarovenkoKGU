@@ -43,19 +43,26 @@ public class JPanelApp extends JPanel {
             setLayout(null);
             // Specifies the position of the element
             final TextField txt1 = new TextField();
-            txt1.setBounds(15, 45, width-75, 25);
-            //txt1.setEditable(false);
+            txt1.setBounds(15, 65, width-75, 25);
+
+            final TextField txt2 = new TextField();
+            txt2.setBounds(15, 120, width-75, 25);
+            txt2.setEditable(true);
+
+            final Label lb1 = new Label();
+            lb1.setBounds(15, 45, width-75, 20);
+
+            final Label lb2 = new Label();
+            lb2.setBounds(15, 100, width-75, 20);
+
+
 
 
             final JButton  but1 = new JButton("<");
-            but1.setBounds(width-50, 45, 50, 30);
-
-            final TextField txt2 = new TextField();
-            txt2.setBounds(15, 80, width-75, 25);
-            txt2.setEditable(true);
+            but1.setBounds(width-50, 65, 50, 25);
 
             final JButton  but2 = new JButton("<");
-            but2.setBounds(width-50, 80, 50, 30);
+            but2.setBounds(width-50, 120, 50, 25);
 
 
             final TextField txt3 = new TextField();
@@ -70,6 +77,16 @@ public class JPanelApp extends JPanel {
 
 
 
+
+
+            operations = userInterface.getOperations().get(0);
+            try {
+                lb1.setText(operations.getNameArg(0));
+                lb2.setText(operations.getNameArg(1));
+            }
+            catch (Exception e){
+
+            }
             add(list);
             add(txt1);
             add(txt3);
@@ -77,6 +94,8 @@ public class JPanelApp extends JPanel {
             add(txt2);
             add(but1);
             add(but2);
+            add(lb1);
+            add(lb2);
 
             txt1.addFocusListener(new FocusListener(){
 
@@ -136,6 +155,7 @@ public class JPanelApp extends JPanel {
             });
 
 
+
             list.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -150,12 +170,27 @@ public class JPanelApp extends JPanel {
                             txt1.setVisible(true);
                             txt2.setVisible(true);
                             but2.setVisible(true);
+                            lb2.setVisible(true);
+                            try {
+                                lb1.setText(operations.getNameArg(0));
+                                lb2.setText(operations.getNameArg(1));
+                            }
+                            catch (Exception es){
+
+                            }
                             list.updateUI();
                         } else {
                             try {
+                                lb2.setVisible(false);
                                 txt2.setVisible(false);
                                 txt1.setVisible(true);
                                 but2.setVisible(false);
+                                try {
+                                    lb1.setText(operations.getNameArg(0));
+                                }
+                                catch (Exception x){
+
+                                }
                                 list.updateUI();
                             } catch (Exception ex) {
 
